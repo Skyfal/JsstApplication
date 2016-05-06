@@ -1,9 +1,12 @@
 package com.jieshun.api.test;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -44,13 +47,35 @@ public class ConfigHelper {
 			String pattern = "\\.properties$/";
 			File file=new File(fileName.matches(pattern)?fileName:fileName+".properties");
 			Properties prop=new Properties();
-			prop.load(new FileInputStream(file));
+//			prop.load(new FileInputStream(file));
+			prop.load(new FileReader(file));
 			return prop;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		list.add(map);
+		
+		
+		
+		
+		
 		return null;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

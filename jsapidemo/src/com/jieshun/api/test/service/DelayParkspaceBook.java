@@ -22,7 +22,7 @@ import com.jieshun.api.test.ConfigHelper;
 public class DelayParkspaceBook extends APIService {
 
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("delayparkspacebook");
+		Properties prop = ConfigHelper.getProperties(baseDir+"delayparkspacebook");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

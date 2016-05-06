@@ -26,8 +26,13 @@ import org.apache.http.message.BasicNameValuePair;
  *
  */
 public abstract class APIService {
-	protected final String url = "http://preapi.jslife.net/jsaims/as";
-
+	
+	private static Properties prop=ConfigHelper.getProperties("config");
+	
+	public static String baseDir = ConfigHelper.getProperties("config").getProperty("config");
+	
+//	protected final String url = "http://syx.jslife.com.cn:8080/jsaims/as";
+//	protected final String url = "http://preapi.jslife.net/jsaims/as";
 	/**
 	 * 构造HTTP请求实体
 	 * 
@@ -38,19 +43,21 @@ public abstract class APIService {
 	 */
 	protected HttpEntity constructHttpEntity(String param)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		
 
 		// 生成MD5签名
 		MessageDigest md5Tool = MessageDigest.getInstance("MD5");
 		byte[] md5Data = md5Tool.digest(param.getBytes("UTF-8"));
 		String sn = Util.toHexString(md5Data);
 
-		Properties prop = ConfigHelper.getProperties("public");
+		Properties prop = ConfigHelper.getProperties(baseDir+"public");
 		ArrayList<NameValuePair> list = new ArrayList<NameValuePair>();
 		list.add(new BasicNameValuePair("cid", prop.getProperty("cid")));
 		list.add(new BasicNameValuePair("v", prop.getProperty("v")));
 		list.add(new BasicNameValuePair("p", param));
 		list.add(new BasicNameValuePair("sn", sn));// MD5特征码
 		list.add(new BasicNameValuePair("tn", Login.getToken()));// 取token
+		
 		HttpEntity en = new UrlEncodedFormEntity(list, "UTF-8");
 		System.out.println("调用参数:" + param);
 		return en;
@@ -61,6 +68,8 @@ public abstract class APIService {
 	 * API执行方法，此方法是一个模板方法，子类无需实现
 	 */
 	final public void execute() {
+		String url = prop.getProperty("funcurl");
+		
 		// TODO Auto-generated method stub
 		BasicCookieStore cookieStore = new BasicCookieStore();
 		CloseableHttpClient httpclient = HttpClients.custom()

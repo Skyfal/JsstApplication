@@ -33,7 +33,7 @@ public class CreateOrderByCarno extends APIService {
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("createorderbycarno");
+		Properties prop = ConfigHelper.getProperties(baseDir+"createorderbycarno");
 
 				// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

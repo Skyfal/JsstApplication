@@ -22,7 +22,7 @@ import com.jieshun.api.test.ConfigHelper;
 public class QueryParkspaceBookList extends APIService {
 
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("queryparkspacebooklist");
+		Properties prop = ConfigHelper.getProperties(baseDir+"queryparkspacebooklist");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

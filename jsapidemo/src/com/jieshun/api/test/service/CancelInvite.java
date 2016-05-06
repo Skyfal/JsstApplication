@@ -22,7 +22,7 @@ import com.jieshun.api.test.ConfigHelper;
 public class CancelInvite extends APIService {
 
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("cancelinvite");
+		Properties prop = ConfigHelper.getProperties(baseDir+"cancelinvite");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

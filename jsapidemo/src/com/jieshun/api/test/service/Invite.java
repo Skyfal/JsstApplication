@@ -23,7 +23,7 @@ import com.jieshun.api.test.ConfigHelper;
 public class Invite extends APIService {
 
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("invite");
+		Properties prop = ConfigHelper.getProperties(baseDir+"invite");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

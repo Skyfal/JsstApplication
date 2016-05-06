@@ -33,8 +33,10 @@ import com.google.gson.JsonParser;
  *
  */
 public class Login {
+	
+	private static Properties prop=ConfigHelper.getProperties("config");
 
-	private static final String url = "http://preapi.jslife.net/jsaims/login";
+//	private static final String url = "http://preapi.jslife.net/jsaims/login";
 
 	private static String token=null;
 	/**
@@ -45,6 +47,8 @@ public class Login {
 	 * @return
 	 */
 	public static String login(String cid, String usr, String psw) {
+		String url = prop.getProperty("loginurl");
+		
 		System.out.println("cid:"+cid+"\tusr:"+usr+"\tpsw:"+psw);
 		BasicCookieStore cookieStore = new BasicCookieStore();
 		CloseableHttpClient httpclient = HttpClients.custom()
@@ -103,8 +107,10 @@ public class Login {
 			return token;
 		}
 		//取公共配置信息
-		Properties prop=ConfigHelper.getProperties("public");
-		token=login(prop.getProperty("cid"),prop.getProperty("usr"),prop.getProperty("psw"));
+//		Properties prop=ConfigHelper.getProperties("public");
+//		String config = prop.getProperty("config");
+		Properties pp = ConfigHelper.getProperties("public");
+		token=login(pp.getProperty("cid"),pp.getProperty("usr"),pp.getProperty("psw"));
 		
 		System.out.println("当前token---->"+token);
 		return token;
