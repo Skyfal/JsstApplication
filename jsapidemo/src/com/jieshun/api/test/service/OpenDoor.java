@@ -30,7 +30,7 @@ public class OpenDoor extends APIService{
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("opendoor");
+		Properties prop = ConfigHelper.getProperties(baseDir+"opendoor");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

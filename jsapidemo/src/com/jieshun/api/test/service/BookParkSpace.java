@@ -24,7 +24,7 @@ public class BookParkSpace extends APIService {
 
 	 */
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("bookparkspace");
+		Properties prop = ConfigHelper.getProperties(baseDir+"bookparkspace");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

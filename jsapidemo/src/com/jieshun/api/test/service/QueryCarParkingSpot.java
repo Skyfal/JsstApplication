@@ -23,7 +23,7 @@ public class QueryCarParkingSpot extends APIService {
 		}
 	 */
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("querycarparkingspot");
+		Properties prop = ConfigHelper.getProperties(baseDir+"querycarparkingspot");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

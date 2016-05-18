@@ -31,7 +31,7 @@ public class QueryPersonsByTel extends APIService{
 
 	@Override
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("querypersonsbytel");
+		Properties prop = ConfigHelper.getProperties(baseDir+"querypersonsbytel");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

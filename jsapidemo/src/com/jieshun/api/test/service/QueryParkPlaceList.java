@@ -27,7 +27,7 @@ public class QueryParkPlaceList extends APIService {
 	 * @return
 	 */
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("queryparkplacelist");
+		Properties prop = ConfigHelper.getProperties(baseDir+"queryparkplacelist");
 		JsonObject jsonParam = new JsonObject();
 		jsonParam.addProperty("serviceId", prop.getProperty("serviceId"));
 		jsonParam.addProperty("requestType", prop.getProperty("requestType"));

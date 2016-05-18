@@ -34,7 +34,7 @@ public class NotifyOrderResult extends APIService {
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("notifyorderresult");
+		Properties prop = ConfigHelper.getProperties(baseDir+"notifyorderresult");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

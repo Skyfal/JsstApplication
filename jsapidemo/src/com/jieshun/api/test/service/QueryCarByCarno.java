@@ -33,7 +33,7 @@ public class QueryCarByCarno  extends APIService{
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("querycarbycarno");
+		Properties prop = ConfigHelper.getProperties(baseDir+"querycarbycarno");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

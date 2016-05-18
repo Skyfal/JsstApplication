@@ -30,7 +30,7 @@ public class QueryParkSpace extends APIService                                  
 
 	@Override
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("queryparkspace");
+		Properties prop = ConfigHelper.getProperties(baseDir+"queryparkspace");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

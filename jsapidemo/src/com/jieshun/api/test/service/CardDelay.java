@@ -33,7 +33,7 @@ public class CardDelay extends APIService {
 
 	@Override
 	protected String buildRequestParam() {
-		Properties prop = ConfigHelper.getProperties("carddelay");
+		Properties prop = ConfigHelper.getProperties(baseDir+"carddelay");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

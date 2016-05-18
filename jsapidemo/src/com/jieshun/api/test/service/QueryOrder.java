@@ -31,7 +31,7 @@ public class QueryOrder extends APIService{
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("queryorder");
+		Properties prop = ConfigHelper.getProperties(baseDir+"queryorder");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();

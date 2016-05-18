@@ -35,7 +35,7 @@ public class QueryCardDealyList extends APIService {
 	@Override
 	protected String buildRequestParam() {
 		// TODO Auto-generated method stub
-		Properties prop = ConfigHelper.getProperties("querycarddealylist");
+		Properties prop = ConfigHelper.getProperties(baseDir+"querycarddealylist");
 
 		// 构造请求参数对象
 		JsonObject jsonParam = new JsonObject();
