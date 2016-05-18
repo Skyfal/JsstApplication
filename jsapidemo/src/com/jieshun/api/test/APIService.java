@@ -56,7 +56,7 @@ public abstract class APIService {
 		list.add(new BasicNameValuePair("v", prop.getProperty("v")));
 		list.add(new BasicNameValuePair("p", param));
 		list.add(new BasicNameValuePair("sn", sn));// MD5特征码
-		list.add(new BasicNameValuePair("tn", Login.getToken()));// 取token
+		list.add(new BasicNameValuePair("tn", Login.getToken(baseDir)));// 取token
 		
 		HttpEntity en = new UrlEncodedFormEntity(list, "UTF-8");
 		System.out.println("调用参数:" + param);

@@ -102,14 +102,14 @@ public class Login {
 	 * @param loginMsg
 	 * @return
 	 */
-	public static String getToken(){
+	public static String getToken(String baseDir){
 		if(token!=null){
 			return token;
 		}
 		//取公共配置信息
 //		Properties prop=ConfigHelper.getProperties("public");
 //		String config = prop.getProperty("config");
-		Properties pp = ConfigHelper.getProperties("public");
+		Properties pp = ConfigHelper.getProperties(baseDir+"public");
 		token=login(pp.getProperty("cid"),pp.getProperty("usr"),pp.getProperty("psw"));
 		
 		System.out.println("当前token---->"+token);
