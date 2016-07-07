@@ -79,10 +79,13 @@ public abstract class APIService {
 		
 		try {
 			// 发起请求
+			long startTime=System.currentTimeMillis();
 			HttpUriRequest requst = RequestBuilder.post().setUri(new URI(url))
 					.setEntity(constructHttpEntity(buildRequestParam()))
 					.build();
 			response = httpclient.execute(requst);
+			long endTime=System.currentTimeMillis();
+			System.out.println("本次API调用耗时----->"+(endTime-startTime)/1000+"."+(endTime-startTime)%1000+"秒");
 			extractResult(response);
 		} catch (Exception e) {
 			e.printStackTrace();
