@@ -46,7 +46,7 @@ public class Login {
 	 * @param psw 用户密码
 	 * @return
 	 */
-	public static String login(String cid, String usr, String psw) {
+	public static String login(String cid, String usr, String psw,String signKey) {
 		String url = prop.getProperty("loginurl");
 		
 		System.out.println("cid:"+cid+"\tusr:"+usr+"\tpsw:"+psw);
@@ -73,7 +73,7 @@ public class Login {
 				int resultCode=json.get("resultCode").getAsInt();
 				if(resultCode==0){
 					System.out.println("登录成功！");
-					return json.get("token").getAsString();
+					return json.get("token").getAsString()+","+signKey;
 				}else{
 					throw new Exception("登录失败!，错误信息：\tresultCode:"+resultCode+"\tmessage:"+json.get("message").getAsString());
 				}
@@ -110,9 +110,13 @@ public class Login {
 //		Properties prop=ConfigHelper.getProperties("public");
 //		String config = prop.getProperty("config");
 		Properties pp = ConfigHelper.getProperties(baseDir+"public");
-		token=login(pp.getProperty("cid"),pp.getProperty("usr"),pp.getProperty("psw"));
+		token=login(pp.getProperty("cid"),pp.getProperty("usr"),pp.getProperty("psw"),pp.getProperty("signKey"));
 		
-		System.out.println("当前token---->"+token);
+		System.out.println("当前token---->"+token.split(",")[0]);
+
+		System.out.println("当前signKey---->"+(token.split(",").length==2?token.split(",")[1]:"").toString());
+
+		
 		return token;
 	}
 	

@@ -7,6 +7,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jieshun.api.test.APIService;
@@ -68,11 +69,11 @@ public class Invite extends APIService {
 			JsonObject json=new JsonParser().parse(results).getAsJsonObject();
 			int resultCode=json.get("resultCode").getAsInt();
 			if(resultCode==0){
+				JsonElement dataItems=json.get("dataItems");
+				System.out.println("queryorder-SUCCESS:访客成功!\n\t访客成功信息："+dataItems.toString());
 				
-				System.out.println("opendoor-SUCCESS:开门成功!：");
-					
 			}else{
-				System.out.println("opendoor-ERROR:调用异常!"+"\tresultCode:"+resultCode+"\tmessage:"+json.get("message"));
+				System.out.println("queryorder-ERROR:调用异常!"+"\tresultCode:"+resultCode+"\tmessage:"+json.get("message").getAsString());
 			}
 		} else {
 			System.out.println("opendoor-ERROR:执行失败！"+"\tstatusCode:"+statusCode);

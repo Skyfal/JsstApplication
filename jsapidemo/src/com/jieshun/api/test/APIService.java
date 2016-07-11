@@ -31,6 +31,8 @@ public abstract class APIService {
 	
 	public static String baseDir = ConfigHelper.getProperties("config").getProperty("config");
 	
+	private static String token=null;
+	
 //	protected final String url = "http://syx.jslife.com.cn:8080/jsaims/as";
 //	protected final String url = "http://preapi.jslife.net/jsaims/as";
 	/**
@@ -43,11 +45,13 @@ public abstract class APIService {
 	 */
 	protected HttpEntity constructHttpEntity(String param)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		
-
+		if(token==null){
+			token = Login.getToken(baseDir);
+		}
+		String[] datas= token.split(",");
 		// 生成MD5签名
 		MessageDigest md5Tool = MessageDigest.getInstance("MD5");
-		byte[] md5Data = md5Tool.digest(param.getBytes("UTF-8"));
+		byte[] md5Data = md5Tool.digest((param+(token.split(",").length==2?token.split(",")[1]:"").toString()).getBytes("UTF-8"));
 		String sn = Util.toHexString(md5Data);
 
 		Properties prop = ConfigHelper.getProperties(baseDir+"public");
@@ -56,7 +60,7 @@ public abstract class APIService {
 		list.add(new BasicNameValuePair("v", prop.getProperty("v")));
 		list.add(new BasicNameValuePair("p", param));
 		list.add(new BasicNameValuePair("sn", sn));// MD5特征码
-		list.add(new BasicNameValuePair("tn", Login.getToken(baseDir)));// 取token
+		list.add(new BasicNameValuePair("tn", datas[0]));// 取token
 		
 		HttpEntity en = new UrlEncodedFormEntity(list, "UTF-8");
 		System.out.println("调用参数:" + param);
@@ -79,10 +83,13 @@ public abstract class APIService {
 		
 		try {
 			// 发起请求
+			long startTime=System.currentTimeMillis();
 			HttpUriRequest requst = RequestBuilder.post().setUri(new URI(url))
 					.setEntity(constructHttpEntity(buildRequestParam()))
 					.build();
 			response = httpclient.execute(requst);
+			long endTime=System.currentTimeMillis();
+			System.out.println("本次API调用耗时----->"+(endTime-startTime)/1000+"."+(endTime-startTime)%1000+"秒");
 			extractResult(response);
 		} catch (Exception e) {
 			e.printStackTrace();

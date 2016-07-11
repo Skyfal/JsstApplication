@@ -1,5 +1,8 @@
 package com.jieshun.api.test;
 
+import java.util.Date;
+
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.jieshun.api.test.service.BookParkSpace;
@@ -11,6 +14,7 @@ import com.jieshun.api.test.service.DelayParkspaceBook;
 import com.jieshun.api.test.service.Invite;
 import com.jieshun.api.test.service.NotifyOrderResult;
 import com.jieshun.api.test.service.OpenDoor;
+import com.jieshun.api.test.service.Passpopedom;
 import com.jieshun.api.test.service.QueryCarByCarno;
 import com.jieshun.api.test.service.QueryCarParkingSpot;
 import com.jieshun.api.test.service.QueryCardDealyList;
@@ -34,6 +38,9 @@ import com.jieshun.api.test.service.QueryPersonsByTel;
 */
 
 public class TestDemo {
+	
+	Logger logger =Logger.getLogger(TestDemo.class);
+	
 	private APIService bookParkSpace = new BookParkSpace();
 	private APIService cardDelay = new CardDelay();
 	private APIService createOrderByCard = new CreateOrderByCard();
@@ -57,6 +64,7 @@ public class TestDemo {
 	private APIService invite =new Invite();
 	private APIService queryhistroyinvite=new QueryHistroyInvite();
 	private APIService cancelinvite=new CancelInvite();
+	private APIService passpopedom = new Passpopedom();
 	
 	
 	
@@ -72,9 +80,25 @@ public class TestDemo {
 	
 	@Test
 	public void testcreateOrderByCard(){
-		createOrderByCard.execute();
+		while(true){
+			Date startdate =new Date();
+			createOrderByCard.execute();
+			Date enddate=new Date();
+			System.out.println("耗时："+"starttime"+startdate+"endtime"+enddate+"\t"+(enddate.getTime()-startdate.getTime()));
+			//logger.info("耗时："+"starttime"+startdate+"endtime"+enddate+(enddate.getTime()-startdate.getTime()));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
+	@Test
+	public void testcreateOrderByCard1() {
+		createOrderByCard.execute();
+	}
+
 	@Test
 	public void testcreateOrderByCarno(){
 		createOrderByCarno.execute();
@@ -203,6 +227,18 @@ public class TestDemo {
 	@Test
 	public void testcancelinvite(){
 		cancelinvite.execute();
+	}
+	
+	/** 
+	* @Title: testpasspopedom 
+	* @Description: TODO(社区住户通过调用该接口获取二维码通行权限) 
+	* @param     设定文件 
+	* @return void    返回类型 
+	* @throws 
+	*/ 
+	@Test
+	public void testpasspopedom(){
+		passpopedom.execute();
 	}
 	
 }

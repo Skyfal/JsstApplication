@@ -42,8 +42,6 @@ public class QueryCarByCarno  extends APIService{
 		JsonObject attributes = new JsonObject();
 		attributes.addProperty("parkCode", prop.getProperty("parkCode"));
 		attributes.addProperty("carNo", prop.getProperty("carNo"));
-		attributes.addProperty("isCallBack", prop.getProperty("isCallBack"));
-		attributes.addProperty("notifyUrl", prop.getProperty("notifyUrl"));
 		jsonParam.add("attributes", attributes);
 
 		return jsonParam.toString();
