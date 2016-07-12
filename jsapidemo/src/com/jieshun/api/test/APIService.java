@@ -31,7 +31,7 @@ public abstract class APIService {
 	
 	public static String baseDir = ConfigHelper.getProperties("config").getProperty("config");
 	
-	private static String token=null;
+	private static String token="";
 	
 //	protected final String url = "http://syx.jslife.com.cn:8080/jsaims/as";
 //	protected final String url = "http://preapi.jslife.net/jsaims/as";
@@ -45,13 +45,16 @@ public abstract class APIService {
 	 */
 	protected HttpEntity constructHttpEntity(String param)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		if(token==null){
-			token = Login.getToken(baseDir);
-		}
-		String[] datas= token.split(",");
+		Properties pp = ConfigHelper.getProperties(baseDir+"public");
+			
+		token = Login.getToken(baseDir);
+		
+		String signKey=(pp.getProperty("signKey")==null)?"":pp.getProperty("signKey");
+		System.out.println("当前token---->"+signKey);
+
 		// 生成MD5签名
 		MessageDigest md5Tool = MessageDigest.getInstance("MD5");
-		byte[] md5Data = md5Tool.digest((param+(token.split(",").length==2?token.split(",")[1]:"").toString()).getBytes("UTF-8"));
+		byte[] md5Data = md5Tool.digest((param+signKey).getBytes("UTF-8"));
 		String sn = Util.toHexString(md5Data);
 
 		Properties prop = ConfigHelper.getProperties(baseDir+"public");
@@ -60,7 +63,7 @@ public abstract class APIService {
 		list.add(new BasicNameValuePair("v", prop.getProperty("v")));
 		list.add(new BasicNameValuePair("p", param));
 		list.add(new BasicNameValuePair("sn", sn));// MD5特征码
-		list.add(new BasicNameValuePair("tn", datas[0]));// 取token
+		list.add(new BasicNameValuePair("tn", token));// 取token
 		
 		HttpEntity en = new UrlEncodedFormEntity(list, "UTF-8");
 		System.out.println("调用参数:" + param);
