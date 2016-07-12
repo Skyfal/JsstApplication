@@ -50,7 +50,7 @@ public abstract class APIService {
 		token = Login.getToken(baseDir);
 		
 		String signKey=(pp.getProperty("signKey")==null)?"":pp.getProperty("signKey");
-		System.out.println("当前token---->"+signKey);
+		System.out.println("当前signKey---->"+signKey);
 
 		// 生成MD5签名
 		MessageDigest md5Tool = MessageDigest.getInstance("MD5");
