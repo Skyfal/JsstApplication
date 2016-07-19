@@ -81,10 +81,10 @@ public class TestDemo {
 	@Test
 	public void testcreateOrderByCard(){
 		while(true){
-			Date startdate =new Date();
+//			Date startdate =new Date();
 			createOrderByCard.execute();
-			Date enddate=new Date();
-			System.out.println("耗时："+"starttime"+startdate+"endtime"+enddate+"\t"+(enddate.getTime()-startdate.getTime()));
+//			Date enddate=new Date();
+//			System.out.println("耗时："+"starttime"+startdate+"endtime"+enddate+"\t"+(enddate.getTime()-startdate.getTime()));
 			//logger.info("耗时："+"starttime"+startdate+"endtime"+enddate+(enddate.getTime()-startdate.getTime()));
 			try {
 				Thread.sleep(100);

@@ -46,8 +46,9 @@ public abstract class APIService {
 	protected HttpEntity constructHttpEntity(String param)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		Properties pp = ConfigHelper.getProperties(baseDir+"public");
-			
-		token = Login.getToken(baseDir);
+		if (token.isEmpty()) {
+			token = Login.getToken(baseDir);
+		}
 		
 		String signKey=(pp.getProperty("signKey")==null)?"":pp.getProperty("signKey");
 		System.out.println("当前signKey---->"+signKey);
