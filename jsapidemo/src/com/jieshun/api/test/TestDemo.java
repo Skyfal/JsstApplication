@@ -1,6 +1,5 @@
 package com.jieshun.api.test;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.jieshun.api.test.service.BookParkSpace;
@@ -36,8 +35,6 @@ import com.jieshun.api.test.service.QueryPersonsByTel;
 */
 
 public class TestDemo {
-	
-	Logger logger =Logger.getLogger(TestDemo.class);
 	
 	private APIService bookParkSpace = new BookParkSpace();
 	private APIService cardDelay = new CardDelay();
