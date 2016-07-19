@@ -23,10 +23,12 @@ public class test implements Runnable{
 	public void run() {
 
 		try {
-
-			new TestDemo().testcreateOrderByCard();
-			Thread.sleep(100);
-			
+			while(true){
+				
+				new TestDemo().testcreateOrderByCard1();
+				Thread.sleep(100);
+				
+			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
