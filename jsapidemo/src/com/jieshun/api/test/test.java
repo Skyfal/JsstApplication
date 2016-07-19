@@ -10,7 +10,7 @@ public class test implements Runnable{
 
 			new Thread(new test()).start();
 
-			Thread.sleep(100);
+			Thread.sleep(1000);
 
 		}
 
@@ -38,4 +38,3 @@ public class test implements Runnable{
 	}
 
 }
-
